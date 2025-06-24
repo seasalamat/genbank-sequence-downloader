@@ -1,28 +1,41 @@
 # genbank-sequence-downloader
-perform batch downloads of DNA/RNA/amino acid sequences from GenBank via Entrez
+perform batch downloads of DNA sequences from GenBank via Entrez
 
 entrez-dd-wgs-db.py
 
 **#Overview:**
-This script downloads the whole sequence in GenBank from a list of accession numbers and renames them to remove spaces and symbols that can interfere with some downstream bioinformatics analysis (such as phylogenetic sequence analysis).
+
+This script downloads sequences in GenBank from a list of accession numbers and renames them to remove spaces and symbols that can interfere with some downstream bioinformatics analysis (such as phylogenetic sequence analysis).
 
 **#Dependencies:**
-This script requires pyhton3 to be installed in your computer. 
+
+This script requires Python 3 to be installed in your computer. 
+
 This script also requires Entrez Direct. To install, refer to "https://www.ncbi.nlm.nih.gov/books/NBK179288/"
-Run the following commands in your terminal:
-sh -c "$(curl -fsSL https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh)"
+
+	Run the following commands in your terminal:
+
+	sh -c "$(curl -fsSL https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh)"
 
 **#Requirements: Input file (csv format)**
-The csv file must have two columns: 
+
+The input csv file must have two columns: 
+
 First column with header "accession" containing the list of accession numbers for download.
+
 Second column with header "id" contains the name of the sequence. Any string of characters can be placed here, but remember that the script will replace all spaces with "_" and all other non-alphanumeric characters with "-".
 
 **#Running the script:**
+
 python3 entrez-dd-wgs-db.py -i <input csv file>
 
-The script will sun the following command for each accession:
+The script will run the following command for each accession:
 
 esearch -db nucleotide -query <accession> | efetch -format fasta > output.fasta
+
+After running, the script will output the following files:
+1.) commands.txt - contains the Entrez commands generated
+2.) DNA sequences in separate fasta files
 
 =======================
 

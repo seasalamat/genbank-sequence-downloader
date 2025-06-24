@@ -27,7 +27,9 @@ Second column with header "id" contains the name of the sequence. Any string of 
 
 **#Running the script:**
 
-python3 entrez-dd-wgs-db.py -i <input csv file>
+	Run the following command in your terminal:
+	
+	python3 entrez-dd-wgs-db.py -i <input csv file>
 
 The script will run the following command for each accession:
 
